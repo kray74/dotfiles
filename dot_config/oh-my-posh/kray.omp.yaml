@@ -1,0 +1,167 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+final_space: true
+version: 2
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: os
+        style: diamond
+        leading_diamond: "█"
+        foreground: "p:os-fallback-fg"
+        background: "p:os-fallback-bg"
+        foreground_templates:
+          - '{{if eq .OS "fedora"}}#50a1d9{{end}}'
+        background_templates:
+          - '{{if eq .OS "fedora"}}#ffffff{{end}}'
+        template: "{{.Icon}} "
+      - type: path
+        style: powerline
+        powerline_symbol: ""
+        foreground: "p:path-fg"
+        background: "p:path-bg"
+        template: " {{url .Path .Location}}{{if not .Writable}} {{end}} "
+        properties:
+          home_icon: " "
+          folder_icon: " "
+          style: full
+      # git upstream status
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        foreground: "p:git-fg"
+        background: "p:git-bg"
+        background_templates:
+          - "{{if and (gt .Ahead 0) (gt .Behind 0)}}p:git-ahead-behind-bg{{end}}"
+          - "{{if gt .Ahead 0}}p:git-ahead-bg{{end}}"
+          - "{{if gt .Behind 0}}p:git-behind-bg{{end}}"
+        template: " {{url .UpstreamIcon .UpstreamURL}}{{if .BranchStatus}}{{.BranchStatus}}{{end}}"
+        properties:
+          fetch_upstream_icon: true
+          fetch_status: true
+          #upstream_icons:
+          #  - gitea.myserver.com: "󰶞"
+      # git worktree
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        foreground: "p:git-worktree-fg"
+        background: "p:git-worktree-bg"
+        template: "{{if .IsWorkTree}}<b>  {{.RepoName}}</b>{{end}}"
+      # git head
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        foreground: "p:git-fg"
+        background: "p:git-bg"
+        template: " {{.HEAD}}"
+        properties:
+          fetch_status: true
+          branch_icon: " "
+          commit_icon: " "
+          tag_icon: " "
+          rebase_icon: " "
+          cherry_pick_icon: " "
+          revert_icon: " "
+          merge_icon: " "
+      # git working tree status
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        template: "{{if .Working.Changed}}  {{.Working.String}}{{end}}"
+        foreground: "p:git-fg"
+        background: "p:git-working-changed-bg"
+        properties:
+          fetch_status: true
+      # git staging area status
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        template: "{{if .Staging.Changed}}  {{.Staging.String}}{{end}}"
+        foreground: "p:git-fg"
+        background: "p:git-staging-changed-bg"
+        properties:
+          fetch_status: true
+      # git misc
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        template: "{{if gt .StashCount 0}}  {{.StashCount}}{{end}}"
+        foreground: "p:git-fg"
+        background: "p:git-bg"
+        properties:
+          fetch_status: true
+  - type: prompt
+    alignment: right
+    filler: "<p:filler-fg,transparent>·</>"
+    segments:
+      - type: executiontime
+        style: diamond
+        leading_diamond: ""
+        foreground: "p:exec-time-fg"
+        background: "p:exec-time-bg"
+        template: " {{.FormattedMs}} "
+      - type: status
+        style: diamond
+        leading_diamond: ""
+        trailing_diamond: "█"
+        foreground_templates:
+          - "{{if eq .Code 0}}p:status-success-fg{{else}}p:status-failure-fg{{end}}"
+        background_templates:
+          - "{{if eq .Code 0}}p:status-success-bg{{else}}p:status-failure-bg{{end}}"
+        template: " {{if eq .Code 0}}󰗠 {{else}} {{.String}}{{if ne (toString .Code) (reason .Code)}} {{reason .Code}}{{end}}{{end}}"
+        properties:
+          always_enabled: true
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: text
+        style: plain
+        # Requires helper function:
+        # function set_poshcontext() {
+        #   sudo -n true >/dev/null 2>&1 && export SUDO_CONTEXT=1 || export SUDO_CONTEXT=0
+        # }
+        # in .zshrc config after `oh-my-posh init zsh`
+        template: '{{if eq .Env.SUDO_CONTEXT "1" }}<p:prompt-sudo-fg>󱐋</>{{else}}{{end}}'
+        foreground: "p:prompt-fg"
+        background: "p:prompt-bg"
+#transient_prompt:
+#  background: "p:prompt-bg"
+#  foreground: "p:prompt-fg"
+#  template: " "
+#2024-07-28: tooltips not appears more the 1 time
+#tooltips:
+#  - type: rust
+#    tips:
+#      - cargo
+#      - rustc
+#    style: diamond
+#    leading_diamond: ""
+#    trailing_diamond: ""
+#    foreground: white
+#    background: blue
+palette:
+  os-fallback-fg: black
+  os-fallback-bg: white
+  path-fg: black
+  path-bg: blue
+  git-fg: black
+  git-bg: green
+  git-working-changed-bg: red
+  git-staging-changed-bg: yellow
+  git-ahead-behind-bg: red
+  git-ahead-bg: cyan
+  git-behind-bg: magenta
+  git-worktree-fg: black
+  git-worktree-bg: green
+  filler-fg: white
+  exec-time-fg: black
+  exec-time-bg: yellow
+  status-success-fg: black
+  status-success-bg: green
+  status-failure-fg: black
+  status-failure-bg: red
+  prompt-fg: white
+  prompt-sudo-fg: red
+  prompt-bg: transparent
