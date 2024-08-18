@@ -70,4 +70,3 @@ function set_poshcontext() {
 
 # atuin automatically adds itself to zsh-autosuggestions strategy
 eval "$(atuin init zsh)"
-
