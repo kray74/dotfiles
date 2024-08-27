@@ -58,15 +58,19 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 export EDITOR='nvim'
 
-alias zshrc="${EDITOR} ${HOME}/.zshrc"
+if command -v atuin > /dev/null; then
+	# atuin automatically adds itself to zsh-autosuggestions strategy
+	eval "$(atuin init zsh)"
+fi
 
-eval "$(oh-my-posh init zsh --config ${XDG_CONFIG:-~/.config}/oh-my-posh/kray.omp.yaml)"
+if command -v fzf > /dev/null; then
+	eval "$(fzf --zsh)"
+fi
 
-function set_poshcontext() {
-  sudo -n /usr/bin/true >/dev/null 2>&1 && export SUDO_CONTEXT=1 || export SUDO_CONTEXT=0
-}
+if command -v oh-my-posh > /dev/null; then
+	eval "$(oh-my-posh init zsh --config ${XDG_CONFIG:-~/.config}/oh-my-posh/kray.omp.yaml)"
 
-#[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
-
-# atuin automatically adds itself to zsh-autosuggestions strategy
-eval "$(atuin init zsh)"
+	function set_poshcontext() {
+		sudo -n /usr/bin/true >/dev/null 2>&1 && export SUDO_CONTEXT=1 || export SUDO_CONTEXT=0
+	}
+fi
