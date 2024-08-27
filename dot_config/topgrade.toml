@@ -159,8 +159,7 @@ dnf_arguments = "--refresh"
 
 # Additional git repositories to pull
 repos = [
-    "~/dev/*",
-    "~/dev/3rdparty/*"
+    "~/devel/**"
 ]
 
 # Don't pull the predefined git repos
