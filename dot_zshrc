@@ -1,5 +1,7 @@
 # vim:foldmethod=marker
 
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
 # vi style key bindings
 # bindkey -v
 
@@ -55,7 +57,6 @@ source $ZSH/oh-my-zsh.sh
 
 # }}}
 
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 export EDITOR='nvim'
 
 if command -v atuin > /dev/null; then
