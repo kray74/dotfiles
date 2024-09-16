@@ -1,0 +1,4 @@
+--theme="Catppuccin Mocha"
+#--tabs 4
+
+#--map-syntax "*.ext:lang"
