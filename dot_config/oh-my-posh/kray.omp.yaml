@@ -7,17 +7,17 @@ blocks:
     segments:
       - type: os
         style: diamond
-        leading_diamond: "█"
+        leading_diamond: ""
         foreground: "p:os-fallback-fg"
         background: "p:os-fallback-bg"
         foreground_templates:
           - '{{if eq .OS "fedora"}}#50a1d9{{end}}'
         background_templates:
           - '{{if eq .OS "fedora"}}#ffffff{{end}}'
-        template: "{{.Icon}} "
+        template: "{{.Icon}} {{.UserName}}@{{.HostName}}"
       - type: path
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: ""
         foreground: "p:path-fg"
         background: "p:path-bg"
         template: " {{url .Path .Location}}{{if not .Writable}} {{end}} "
@@ -28,7 +28,7 @@ blocks:
       # git upstream status
       - type: git
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: ""
         foreground: "p:git-fg"
         background: "p:git-bg"
         background_templates:
@@ -44,14 +44,14 @@ blocks:
       # git worktree
       - type: git
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: ""
         foreground: "p:git-worktree-fg"
         background: "p:git-worktree-bg"
         template: "{{if .IsWorkTree}}<b>  {{.RepoName}}</b>{{end}}"
       # git head
       - type: git
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: ""
         foreground: "p:git-fg"
         background: "p:git-bg"
         template: " {{.HEAD}}"
@@ -67,7 +67,7 @@ blocks:
       # git working tree status
       - type: git
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: ""
         template: "{{if .Working.Changed}}  {{.Working.String}}{{end}}"
         foreground: "p:git-fg"
         background: "p:git-working-changed-bg"
@@ -76,7 +76,7 @@ blocks:
       # git staging area status
       - type: git
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: ""
         template: "{{if .Staging.Changed}}  {{.Staging.String}}{{end}}"
         foreground: "p:git-fg"
         background: "p:git-staging-changed-bg"
@@ -85,7 +85,7 @@ blocks:
       # git misc
       - type: git
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: ""
         template: "{{if gt .StashCount 0}}  {{.StashCount}}{{end}}"
         foreground: "p:git-fg"
         background: "p:git-bg"
@@ -97,14 +97,14 @@ blocks:
     segments:
       - type: executiontime
         style: diamond
-        leading_diamond: ""
+        leading_diamond: ""
         foreground: "p:exec-time-fg"
         background: "p:exec-time-bg"
         template: " {{.FormattedMs}} "
       - type: status
         style: diamond
-        leading_diamond: ""
-        trailing_diamond: "█"
+        leading_diamond: ""
+        trailing_diamond: ""
         foreground_templates:
           - "{{if eq .Code 0}}p:status-success-fg{{else}}p:status-failure-fg{{end}}"
         background_templates:
