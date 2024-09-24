@@ -1,0 +1,11 @@
+[user]
+	email = kray74vb@gmail.com
+	name = Vasiliy Biryukov
+[init]
+	defaultBranch = main
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
