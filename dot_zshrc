@@ -1,77 +1,39 @@
-# vim:foldmethod=marker
+# XDG Base Directory
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+# Uncluttering home (see https://github.com/b3nj5m1n/xdg-ninja)
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 
-# vi style key bindings
-# bindkey -v
+# Editor
+export EDITOR=nvim
+export VISUAL="$EDITOR"
 
-# oh-my-zsh {{{
-export ZSH="$HOME/.oh-my-zsh"
-#ZSH_THEME="robbyrussell"
+# Path
+export PATH="$CARGO_HOME/bin:$HOME/.local/bin:$PATH"
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# Use vi key bindings (viins keymap)
+bindkey -v
+export KEYTIMEOUT=1
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="$HOME/.zsh-custom"
-
-# zsh-autosuggestions plugin settings
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(
-# colorize man pages and add `colored` command, which can colourize other utilitites help information
-# e.g: `colored git help clone`
-  colored-man-pages
-# add extract function to extract any archive (and also alias `x`)
-  extract
-# syntax highlight of shell commands
-  F-Sy-H
-# suggest commands as you type
-  zsh-autosuggestions
+# List of plugins to be loaded
+# Copy (or symlink) plugin directory to $XDG_CONFIG_HOME/zsh/plugins
+zsh_plugins=(
+	# fzf-tab must be loaded before plugins which will wrap widgets
+	fzf-tab
+	F-Sy-H
+	zsh-autosuggestions
+	zsh-system-clipboard
 )
 
-# custom completions
-fpath+=$ZSH_CUSTOM/completions
+# Set zsh completion options
+# Set key bindings
+# Load plugins
+# Load custom files from $XDG_CONFIG_HOME/zsh/custom/*.zsh
+source "$XDG_CONFIG_HOME/zsh/zsh-config.zsh"
 
-source $ZSH/oh-my-zsh.sh
+# User settings
 
-# }}}
-
-export EDITOR='nvim'
-
-if command -v atuin > /dev/null; then
-	# atuin automatically adds itself to zsh-autosuggestions strategy
-	eval "$(atuin init zsh)"
-fi
-
-if command -v fzf > /dev/null; then
-	eval "$(fzf --zsh)"
-fi
-
-if command -v oh-my-posh > /dev/null; then
-	eval "$(oh-my-posh init zsh --config ${XDG_CONFIG:-~/.config}/oh-my-posh/kray.omp.yaml)"
-
-	function set_poshcontext() {
-		sudo -n /usr/bin/true >/dev/null 2>&1 && export SUDO_CONTEXT=1 || export SUDO_CONTEXT=0
-	}
-fi
