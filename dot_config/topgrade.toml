@@ -82,13 +82,14 @@ skip_notify = true
 # Commands to run after anything
 [post_commands]
 # "Emacs Snapshot" = "rm -rf ~/.emacs.d/elpa.bak && cp -rl ~/.emacs.d/elpa ~/.emacs.d/elpa.bak"
+"zsh compinit rehash" = "rehash"
 
 
 # Custom commands
 [commands]
 # "Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 # "Custom command using interactive shell (unix)" = "-i vim_upgrade"
-"\u001b]8;;https://github.com/JanDeDobbeleer/oh-my-posh/releases\u001b\\ oh-my-posh\u001b]8;;\u001b\\" = "oh-my-posh upgrade"
+"oh-my-posh upgrade" = "oh-my-posh upgrade"
 "chezmoi upgrade" = "chezmoi upgrade"
 
 
