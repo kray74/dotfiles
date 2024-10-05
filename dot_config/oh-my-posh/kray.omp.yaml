@@ -12,8 +12,10 @@ blocks:
         background: "p:os-fallback-bg"
         foreground_templates:
           - '{{if eq .OS "fedora"}}#50a1d9{{end}}'
+          - '{{if eq .OS "debian"}}#a80030{{end}}'
         background_templates:
           - '{{if eq .OS "fedora"}}#ffffff{{end}}'
+          - '{{if eq .OS "debian"}}#ffffff{{end}}'
         template: "{{.Icon}} {{.UserName}}@{{.HostName}}"
       - type: path
         style: powerline
