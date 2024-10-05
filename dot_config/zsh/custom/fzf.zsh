@@ -29,4 +29,9 @@ if is_command_exists fzf; then
 
 	unset _fzf_common_flags
 	unset _fzf_dir_preview
+
+	# reset Ctrl+r to atuin
+	if is_command_exists atuin; then
+		bindkey '^r' atuin-search
+	fi
 fi
