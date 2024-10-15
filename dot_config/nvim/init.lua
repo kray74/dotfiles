@@ -31,7 +31,6 @@ opt.showbreak = "󱞾 "
 
 -- highlight line under cursor
 opt.cursorline = true
-opt.cursorlineopt = both
 
 -- indentation settings
 opt.expandtab = false
