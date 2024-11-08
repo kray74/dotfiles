@@ -10,3 +10,7 @@ if is_command_exists dnf; then
 	alias dnfunw="sudo dnf upgrade --refresh --setopt=install_weak_deps=False"
 	alias dnfup="sudo dnf upgrade --refresh --best --allowerasing"
 fi
+
+if is_command_exists dnf5; then
+	alias dnfcl="dnf5 changelog --count=1"
+fi
