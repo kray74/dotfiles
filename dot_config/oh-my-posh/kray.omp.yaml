@@ -1,163 +1,143 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-final_space: true
-version: 2
-blocks:
-  - type: prompt
-    alignment: left
-    segments:
-      - type: os
-        style: diamond
-        leading_diamond: ""
-        foreground: "p:os-fallback-fg"
-        background: "p:os-fallback-bg"
-        foreground_templates:
-          - '{{if eq .OS "fedora"}}#50a1d9{{end}}'
-          - '{{if eq .OS "debian"}}#a80030{{end}}'
-        background_templates:
-          - '{{if eq .OS "fedora"}}#ffffff{{end}}'
-          - '{{if eq .OS "debian"}}#ffffff{{end}}'
-        template: "{{.Icon}} {{.UserName}}@{{.HostName}}"
-      - type: path
-        style: powerline
-        powerline_symbol: ""
-        foreground: "p:path-fg"
-        background: "p:path-bg"
-        template: " {{url .Path .Location}}{{if not .Writable}} {{end}} "
-        properties:
-          home_icon: " "
-          folder_icon: " "
-          style: full
-      # git upstream status
-      - type: git
-        style: powerline
-        powerline_symbol: ""
-        foreground: "p:git-fg"
-        background: "p:git-bg"
-        background_templates:
-          - "{{if and (gt .Ahead 0) (gt .Behind 0)}}p:git-ahead-behind-bg{{end}}"
-          - "{{if gt .Ahead 0}}p:git-ahead-bg{{end}}"
-          - "{{if gt .Behind 0}}p:git-behind-bg{{end}}"
-        template: " {{url .UpstreamIcon .UpstreamURL}}{{if .BranchStatus}}{{.BranchStatus}}{{end}}"
-        properties:
-          fetch_upstream_icon: true
-          fetch_status: true
-          #upstream_icons:
-          #  - gitea.myserver.com: "󰶞"
-      # git worktree
-      - type: git
-        style: powerline
-        powerline_symbol: ""
-        foreground: "p:git-worktree-fg"
-        background: "p:git-worktree-bg"
-        template: "{{if .IsWorkTree}}<b>  {{.RepoName}}</b>{{end}}"
-      # git head
-      - type: git
-        style: powerline
-        powerline_symbol: ""
-        foreground: "p:git-fg"
-        background: "p:git-bg"
-        template: " {{.HEAD}}"
-        properties:
-          fetch_status: true
-          branch_icon: " "
-          commit_icon: " "
-          tag_icon: " "
-          rebase_icon: " "
-          cherry_pick_icon: " "
-          revert_icon: " "
-          merge_icon: " "
-      # git working tree status
-      - type: git
-        style: powerline
-        powerline_symbol: ""
-        template: "{{if .Working.Changed}}  {{.Working.String}}{{end}}"
-        foreground: "p:git-fg"
-        background: "p:git-working-changed-bg"
-        properties:
-          fetch_status: true
-      # git staging area status
-      - type: git
-        style: powerline
-        powerline_symbol: ""
-        template: "{{if .Staging.Changed}}  {{.Staging.String}}{{end}}"
-        foreground: "p:git-fg"
-        background: "p:git-staging-changed-bg"
-        properties:
-          fetch_status: true
-      # git misc
-      - type: git
-        style: powerline
-        powerline_symbol: ""
-        template: "{{if gt .StashCount 0}}  {{.StashCount}}{{end}}"
-        foreground: "p:git-fg"
-        background: "p:git-bg"
-        properties:
-          fetch_status: true
-  - type: prompt
-    alignment: right
-    filler: "<p:filler-fg,transparent>·</>"
-    segments:
-      - type: executiontime
-        style: diamond
-        leading_diamond: ""
-        foreground: "p:exec-time-fg"
-        background: "p:exec-time-bg"
-        template: " {{.FormattedMs}} "
-      - type: status
-        style: diamond
-        leading_diamond: ""
-        trailing_diamond: ""
-        foreground_templates:
-          - "{{if eq .Code 0}}p:status-success-fg{{else}}p:status-failure-fg{{end}}"
-        background_templates:
-          - "{{if eq .Code 0}}p:status-success-bg{{else}}p:status-failure-bg{{end}}"
-        template: " {{if eq .Code 0}}󰗠 {{else}} {{.String}}{{if ne (toString .Code) (reason .Code)}} {{reason .Code}}{{end}}{{end}}"
-        properties:
-          always_enabled: true
-  - type: prompt
-    alignment: left
-    newline: true
-    segments:
-      - type: text
-        style: plain
-        template: ''
-        foreground: "p:prompt-fg"
-        background: "p:prompt-bg"
-#transient_prompt:
-#  background: "p:prompt-bg"
-#  foreground: "p:prompt-fg"
-#  template: " "
-#2024-07-28: tooltips not appears more the 1 time
-#tooltips:
-#  - type: rust
-#    tips:
-#      - cargo
-#      - rustc
-#    style: diamond
-#    leading_diamond: ""
-#    trailing_diamond: ""
-#    foreground: white
-#    background: blue
+
 palette:
-  os-fallback-fg: black
-  os-fallback-bg: white
-  path-fg: black
-  path-bg: blue
-  git-fg: black
-  git-bg: green
-  git-working-changed-bg: red
-  git-staging-changed-bg: yellow
+  exec-time-bg: yellow
+  exec-time-fg: black
+  filler-fg: white
   git-ahead-behind-bg: red
   git-ahead-bg: cyan
   git-behind-bg: magenta
-  git-worktree-fg: black
+  git-bg: green
+  git-fg: black
+  git-staging-changed-bg: yellow
+  git-working-changed-bg: red
   git-worktree-bg: green
-  filler-fg: white
-  exec-time-fg: black
-  exec-time-bg: yellow
-  status-success-fg: black
-  status-success-bg: green
-  status-failure-fg: black
-  status-failure-bg: red
-  prompt-fg: white
+  git-worktree-fg: black
+  os-fallback-bg: white
+  os-fallback-fg: black
+  path-bg: blue
+  path-fg: black
   prompt-bg: transparent
+  prompt-fg: white
+  status-failure-bg: red
+  status-failure-fg: black
+  status-success-bg: green
+  status-success-fg: black
+blocks:
+- type: prompt
+  alignment: left
+  segments:
+  - style: diamond
+    leading_diamond: 
+    template: "{{.Icon}} {{.UserName}}@{{.HostName}}"
+    foreground: p:os-fallback-fg
+    background: p:os-fallback-bg
+    type: os
+    foreground_templates:
+    - "{{if eq .OS \"fedora\"}}#50a1d9{{end}}"
+    - "{{if eq .OS \"debian\"}}#a80030{{end}}"
+    background_templates:
+    - "{{if eq .OS \"fedora\"}}#ffffff{{end}}"
+    - "{{if eq .OS \"debian\"}}#ffffff{{end}}"
+  - properties:
+      folder_icon: "\ueaf7 "
+      home_icon: "\ueb06 "
+      style: full
+    style: powerline
+    template: " {{url .Path .Location}}{{if not .Writable}} \ue672{{end}} "
+    foreground: p:path-fg
+    powerline_symbol: 
+    background: p:path-bg
+    type: path
+  - properties:
+      fetch_status: true
+      fetch_upstream_icon: true
+    style: powerline
+    template: " {{url .UpstreamIcon .UpstreamURL}}{{if .BranchStatus}}{{.BranchStatus}}{{end}}"
+    foreground: p:git-fg
+    powerline_symbol: 
+    background: p:git-bg
+    type: git
+    background_templates:
+    - "{{if and (gt .Ahead 0) (gt .Behind 0)}}p:git-ahead-behind-bg{{end}}"
+    - "{{if gt .Ahead 0}}p:git-ahead-bg{{end}}"
+    - "{{if gt .Behind 0}}p:git-behind-bg{{end}}"
+  - style: powerline
+    template: "{{if .IsWorkTree}}<b> \ue21c {{.RepoName}}</b>{{end}}"
+    foreground: p:git-worktree-fg
+    powerline_symbol: 
+    background: p:git-worktree-bg
+    type: git
+  - properties:
+      branch_icon: "\ue725 "
+      cherry_pick_icon: "\ue29b "
+      commit_icon: "\uf417 "
+      fetch_status: true
+      merge_icon: "\ue727 "
+      rebase_icon: "\ue728 "
+      revert_icon: "\uf0e2 "
+      tag_icon: "\uf412 "
+    style: powerline
+    template: " {{.HEAD}}"
+    foreground: p:git-fg
+    powerline_symbol: 
+    background: p:git-bg
+    type: git
+  - properties:
+      fetch_status: true
+    style: powerline
+    template: "{{if .Working.Changed}} \uf044 {{.Working.String}}{{end}}"
+    foreground: p:git-fg
+    powerline_symbol: 
+    background: p:git-working-changed-bg
+    type: git
+  - properties:
+      fetch_status: true
+    style: powerline
+    template: "{{if .Staging.Changed}} \uf046 {{.Staging.String}}{{end}}"
+    foreground: p:git-fg
+    powerline_symbol: 
+    background: p:git-staging-changed-bg
+    type: git
+  - properties:
+      fetch_status: true
+    style: powerline
+    template: "{{if gt .StashCount 0}} \ue240 {{.StashCount}}{{end}}"
+    foreground: p:git-fg
+    powerline_symbol: 
+    background: p:git-bg
+    type: git
+- type: prompt
+  alignment: right
+  filler: <p:filler-fg,transparent>·</>
+  segments:
+  - style: diamond
+    leading_diamond: 
+    template: "\uf252 {{.FormattedMs}} "
+    foreground: p:exec-time-fg
+    background: p:exec-time-bg
+    type: executiontime
+  - properties:
+      always_enabled: true
+    style: diamond
+    leading_diamond: 
+    trailing_diamond: 
+    template: " {{if eq .Code 0}}\U000f05e0 {{else}}\uf421 {{.String}}{{if ne (toString .Code) (reason .Code)}} {{reason .Code}}{{end}}{{end}}"
+    foreground: ""
+    background: ""
+    type: status
+    foreground_templates:
+    - "{{if eq .Code 0}}p:status-success-fg{{else}}p:status-failure-fg{{end}}"
+    background_templates:
+    - "{{if eq .Code 0}}p:status-success-bg{{else}}p:status-failure-bg{{end}}"
+- type: prompt
+  alignment: left
+  segments:
+  - style: plain
+    template: 
+    foreground: p:prompt-fg
+    background: p:prompt-bg
+    type: text
+  newline: true
+version: 3
+final_space: true
