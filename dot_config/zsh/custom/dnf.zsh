@@ -1,6 +1,6 @@
 if is_command_exists dnf; then
 	alias dnfl="dnf list"
-	alias dnfli="dnf list installed"
+	alias dnfli="dnf list --installed"
 	alias dnfs="dnf search"
 	alias dnfwr="dnf repoquery --installed --whatrequires "
 	alias dnfi="sudo dnf install"
