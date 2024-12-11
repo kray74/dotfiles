@@ -69,4 +69,9 @@ g.tabclose = "uselast"
 g.mapleader = " "
 g.maplocalleader = "\\"
 
+vim.filetype.add({extension = {container = 'systemd'}})
+vim.filetype.add({extension = {volume = 'systemd'}})
+vim.filetype.add({extension = {network = 'systemd'}})
+vim.filetype.add({extension = {build = 'systemd'}})
+
 require("config.lazy")
