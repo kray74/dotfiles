@@ -1,0 +1,242 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = 'catppuccin-mocha'
+
+format = """
+[](fg:host-bg bg:hidden)$os$username$hostname\
+[](fg:prev_bg bg:path-bg)$directory\
+([](fg:prev_bg bg:git-bg)$git_state$git_branch$git_commit)\
+[](fg:prev_bg bg:none)$git_status\
+$fill\
+(\
+([](fg:jobs-bg bg:prev_bg)$jobs)\
+([](fg:duration-bg bg:prev_bg)$cmd_duration)\
+([](fg:error-bg bg:prev_bg)$status)\
+[](fg:prev_bg bg:none)\
+)
+$sudo$character"""
+
+right_format = '$python( $shlvl)'
+
+[os]
+disabled = false
+style = 'fg:host-fg bg:host-bg'
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
+[username]
+show_always = true
+style_user = 'fg:host-fg bg:host-bg italic'
+style_root = 'fg:root-fg bg:root-bg bold'
+format = '[$user]($style)'
+
+[hostname]
+ssh_only = false
+ssh_symbol = '󰢹 '
+trim_at = ''
+style = 'fg:host-fg bg:host-bg italic'
+format = '[@$hostname$ssh_symbol]($style)'
+
+[directory]
+truncation_length = 5
+truncate_to_repo = true
+truncation_symbol = ' /'
+read_only = '󰌾 '
+home_symbol = ' '
+style = 'fg:path-fg bg:path-bg'
+read_only_style = 'fg:path-fg bg:path-bg'
+repo_root_style = 'fg:path-fg bg:path-bg bold'
+format = """
+[ $path]($style)\
+[ $read_only]($read_only_style)"""
+repo_root_format = """[ $before_root_path]($before_repo_root_style)\
+[$repo_root]($repo_root_style)\
+[$path]($style)\
+[$read_only]($read_only_style)"""
+
+[git_state]
+rebase = ' '
+merge = ' '
+revert = ' '
+cherry_pick = ' '
+bisect = ' '
+am = ' '
+am_or_rebase = ' / '
+style = 'fg:git-fg bg:git-bg'
+format = '[ $state($progress_current/$progress_total)]($style)'
+
+[git_branch]
+symbol = ' '
+style = 'fg:git-fg bg:git-bg'
+format = '[ $symbol$branch(:$remote_branch)]($style)'
+
+[git_commit]
+commit_hash_length = 7
+tag_disabled = false
+tag_symbol = ' '
+style = 'fg:git-fg bg:git-bg'
+format = '[  $hash $tag]($style)'
+
+[git_status]
+conflicted = '=$count'
+ahead = '⇡$count'
+behind = '⇣$count'
+untracked = '?$count'
+stashed = '\$$count'
+modified = '!$count'
+staged = '+$count'
+renamed = '»$count'
+deleted = '✘$count'
+typechanged = 'T$count'
+format = """( \
+[($ahead)](fg:git-ahead)\
+[($behind)](fg:git-behind)\
+[($conflicted)](fg:git-conflicted)\
+[($staged)](fg:git-staged)\
+[($renamed)](fg:git-renamed)\
+[($typechanged)](fg:git-typechanged)\
+[($deleted)](fg:git-deleted)\
+[($modified)](fg:git-modified)\
+[($untracked)](fg:git-untracked)\
+[($stashed)](fg:git-stashed)\
+)"""
+
+[fill]
+symbol = ' ·'
+style = 'fg:fill dimmed'
+
+[jobs]
+symbol = '󱌣 '
+format = '[$symbol$number ]($style)'
+style = 'fg:jobs-fg bg:jobs-bg'
+
+[cmd_duration]
+min_time = 1_000  # 1 sec
+format = '[ $duration ]($style)'
+style = 'fg:duration-fg bg:duration-bg'
+
+[status]
+disabled = false
+map_symbol = true
+pipestatus = true
+symbol = ' '
+not_executable_symbol = ' '
+not_found_symbol = ' '
+sigint_symbol = '󰹇 '
+signal_symbol = ' '
+#success_symbol = '󰗠 '
+format = '[$symbol($signal_name$common_meaning )$status]($style)'
+pipestatus_format = """
+[$symbol($signal_name$common_meaning )\
+\\[$pipestatus\\]=>$status]($style)"""
+pipestatus_segment_format = '$status'
+style = 'fg:error-fg bg:error-bg'
+
+[sudo]
+disabled = false
+symbol = '🧙'
+format = '[$symbol]($style)'
+style = 'fg:sudo'
+
+[character]
+success_symbol = '[\[I\]](fg:char-success)[](fg:prompt)'
+error_symbol = '[\[I\]](fg:char-failure)[](fg:prompt)'
+vimcmd_symbol = '[\[N\]](fg:vi-normal)[](fg:prompt)'
+
+# fish only
+vimcmd_replace_symbol = '[\[R\]](fg:vi-replace)[](fg:prompt)'
+vimcmd_replace_one_symbol = '[\[R\]](fg:vi-replace)[](fg:prompt)'
+vimcmd_visual_symbol = '[\[V\]](fg:vi-visual)[](fg:prompt)'
+
+[python]
+# only show virtualenv
+symbol = ' '
+format = '[$symbol$virtualenv]($style)'
+style = 'fg:python'
+detect_extensions = []
+detect_files = []
+
+[shlvl]
+disabled = false
+symbol = '󰛃 '
+format = '[$symbol$shlvl]($style)'
+style = 'fg:shlvl'
+
+[palettes.catppuccin-mocha]
+host-fg = 'black'
+host-bg = 'white'
+root-fg = 'black'
+root-bg = 'red'
+path-fg = 'black'
+path-bg = 'blue'
+git-fg = 'black'
+git-bg = 'green'
+git-ahead = 'green'
+git-behind = 'red'
+git-conflicted = 'red'
+git-staged = 'green'
+git-renamed = 'blue'
+git-typechanged = 'cyan'
+git-deleted = 'red'
+git-modified = 'yellow'
+git-untracked = 'blue'
+git-stashed = 'yellow'
+fill = 'white'
+jobs-fg = 'black'
+jobs-bg = 'cyan'
+duration-fg = 'black'
+duration-bg = 'yellow'
+error-fg = 'black'
+error-bg = 'red'
+sudo = 'red'
+char-success = 'green'
+char-failure = 'red'
+vi-normal = 'blue'
+vi-visual = 'cyan'
+vi-replace = 'yellow'
+prompt = 'white'
+python = 'yellow'
+shlvl = 'blue'
