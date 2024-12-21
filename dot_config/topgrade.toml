@@ -158,7 +158,7 @@ skip_notify = true
 
 # Additional git repositories to pull
 repos = [
-	"~/devel/**"
+	"~/projects/**"
 ]
 
 # Don't pull the predefined git repos
