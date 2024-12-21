@@ -121,27 +121,21 @@ style = 'fg:git-fg bg:git-bg'
 format = '[  $hash $tag]($style)'
 
 [git_status]
-conflicted = '=$count'
-ahead = '⇡$count'
-behind = '⇣$count'
-untracked = '?$count'
-stashed = '\$$count'
-modified = '!$count'
-staged = '+$count'
-renamed = '»$count'
-deleted = '✘$count'
-typechanged = 'T$count'
+conflicted = '[(=$count)](fg:git-conflicted)'
+ahead = '[(⇡$count)](fg:git-ahead)'
+behind = '[(⇣$count)](fg:git-behind)'
+diverged = '[(⇣$behind_count](fg:git-behind)[(⇡$ahead_count)](fg:git-ahead)'
+untracked = '[(?$count)](fg:git-untracked)'
+stashed = '[(\$$count)](fg:git-stashed)'
+modified = '[(!$count)](fg:git-modified)'
+staged = '[(+$count)](fg:git-staged)'
+renamed = '[(»$count)](fg:git-renamed)'
+deleted = '[(✘$count)](fg:git-deleted)'
+typechanged = '[(T$count)](fg:git-typechanged)'
 format = """( \
-[($ahead)](fg:git-ahead)\
-[($behind)](fg:git-behind)\
-[($conflicted)](fg:git-conflicted)\
-[($staged)](fg:git-staged)\
-[($renamed)](fg:git-renamed)\
-[($typechanged)](fg:git-typechanged)\
-[($deleted)](fg:git-deleted)\
-[($modified)](fg:git-modified)\
-[($untracked)](fg:git-untracked)\
-[($stashed)](fg:git-stashed)\
+$ahead_behind$conflicted\
+$staged$renamed$typechanged$deleted\
+$modified$untracked$stashed
 )"""
 
 [fill]
