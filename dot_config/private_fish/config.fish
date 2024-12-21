@@ -12,9 +12,10 @@ if status is-interactive
 			"--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8" \
 			"--color=selected-bg:#45475a"
 
-		set -f _fzf_dir_preview ls -1AF --group-directories-first --color=always
 		if is_command_exists eza
 			set -f _fzf_dir_preview eza -1aF --group-directories-first --color=always --icons=always
+		else
+			set -f _fzf_dir_preview ls -1AF --group-directories-first --color=always
 		end
 
 		set -gx FZF_DEFAULT_OPTS $_fzf_common_flags
@@ -60,10 +61,8 @@ if status is-interactive
 		_fzf_setup
 	end
 
-	if is_command_exists systemctl
-		# disable horizontal scroll
-		set -gx SYSTEMD_LESS FRXMK
-	end
+	# disable horizontal scroll
+	set -gx SYSTEMD_LESS FRXMK
 end
 
 if status is-interactive
@@ -83,37 +82,27 @@ if status is-interactive
 		end
 	end
 
+	if is_command_exists zoxide
+		zoxide init fish | source
+	end
+
 	if is_command_exists starship
 		starship init fish | source
-	end
-
-	if is_command_exists chezmoi
-		abbr -a --position command cm chezmoi
-	end
-
-	if is_command_exists firewall-cmd
-		abbr -a --position command fw sudo firewall-cmd
 	end
 
 	if [ $TERM = "xterm-kitty" ]
 		abbr -a --position command ssh kitten ssh
 	end
 
-	if is_command_exists nvim
-		abbr -a --position command v nvim
-		abbr -a --position command sv sudo nvim
-	end
-
-	if is_command_exists systemctl
-		abbr -a --position command sc sudo systemctl
-		abbr -a --position command scu systemctl --user
-	end
-
-	if is_command_exists journalctl
-		abbr -a --position command jc journalctl
-	end
-
 	if is_command_exists vivid
 		set -gx LS_COLORS (vivid generate catppuccin-mocha)
 	end
+
+	abbr -a --position command v nvim
+	abbr -a --position command sv sudo nvim
+	abbr -a --position command sc sudo systemctl
+	abbr -a --position command scu systemctl --user
+	abbr -a --position command jc journalctl
+	abbr -a --position command cm chezmoi
+	abbr -a --position command fw sudo firewall-cmd
 end
