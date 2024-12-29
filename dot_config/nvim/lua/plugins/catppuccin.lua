@@ -1,17 +1,6 @@
--- https://github.com/catppuccin/nvim
-
-local M = {
-	"catppuccin/nvim",
-	name = "catppuccin",
-	lazy = false,
-	priority = 1000,
+return {
+  "catppuccin",
+  opts = {
+    transparent_background = true,
+  },
 }
-
-function M.config()
-	require("catppuccin").setup({
-		flavour = "mocha"
-	})
-	vim.cmd.colorscheme "catppuccin"
-end
-
-return M
