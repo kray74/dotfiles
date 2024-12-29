@@ -189,7 +189,7 @@ detect_files = []
 
 [shlvl]
 disabled = false
-symbol = '󰛃 '
+symbol = ' '
 format = '[$symbol$shlvl]($style)'
 style = 'fg:shlvl'
 
