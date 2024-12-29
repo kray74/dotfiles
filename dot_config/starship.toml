@@ -135,7 +135,7 @@ typechanged = '[(T$count)](fg:git-typechanged)'
 format = """( \
 $ahead_behind$conflicted\
 $staged$renamed$typechanged$deleted\
-$modified$untracked$stashed
+$modified$untracked$stashed\
 )"""
 
 [fill]
