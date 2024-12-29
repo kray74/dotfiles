@@ -148,7 +148,7 @@ format = '[$symbol$number ]($style)'
 style = 'fg:jobs-fg bg:jobs-bg'
 
 [cmd_duration]
-min_time = 1_000  # 1 sec
+min_time = 1_000                        # 1 sec
 format = '[ $duration ]($style)'
 style = 'fg:duration-fg bg:duration-bg'
 
