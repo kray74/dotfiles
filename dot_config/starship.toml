@@ -14,7 +14,7 @@ $fill\
 ([](fg:error-bg bg:prev_bg)$status)\
 [](fg:prev_bg bg:none)\
 )
-$sudo$character"""
+$character"""
 
 right_format = '$python( $shlvl)'
 
@@ -168,12 +168,6 @@ pipestatus_format = """
 \\[$pipestatus\\]=>$status]($style)"""
 pipestatus_segment_format = '$status'
 style = 'fg:error-fg bg:error-bg'
-
-[sudo]
-disabled = false
-symbol = '🧙'
-format = '[$symbol]($style)'
-style = 'fg:sudo'
 
 [character]
 success_symbol = '[\[I\]](fg:char-success)[](fg:prompt)'
