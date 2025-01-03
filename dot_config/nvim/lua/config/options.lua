@@ -30,7 +30,7 @@ o.smartindent = true
 
 o.wrap = true
 
--- file types
+-- file types. https://neovim.io/doc/user/lua.html#vim.filetype.add()
 ft.add({ extension = { container = "systemd" } })
 ft.add({ extension = { volume = "systemd" } })
 ft.add({ extension = { network = "systemd" } })
