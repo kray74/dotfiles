@@ -18,7 +18,7 @@
 disable = ["toolbx", "distrobox"]
 
 # Ignore failures for these steps
-ignore_failures = ["chezmoi"]
+ignore_failures = ["chezmoi", "git_repos"]
 
 # List of remote machines with Topgrade installed on them
 # remote_topgrades = ["toothless", "pi", "parnas"]
@@ -157,9 +157,7 @@ skip_notify = true
 # max_concurrency = 5
 
 # Additional git repositories to pull
-repos = [
-	"~/projects/**"
-]
+repos = ["~/projects/**"]
 
 # Don't pull the predefined git repos
 # pull_predefined = false
