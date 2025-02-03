@@ -37,6 +37,7 @@ if status is-interactive
     set -gx CUDA_CACHE_PATH "$XDG_CACHE_HOME/nv"
     set -gx NPM_CONFIG_CACHE "$XDG_CACHE_HOME/npm"
     set -gx NPM_CONFIG_TMP "$XDG_RUNTIME_DIR/npm"
+    set -gx ANDROID_USER_HOME "$XDG_DATA_HOME/android"
 
     # PATH
     fish_add_path -pg "$HOME/.local/bin"
