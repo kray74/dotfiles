@@ -45,9 +45,9 @@ if status is-interactive
     fish_add_path -pg "$CARGO_HOME/bin"
 
     # Wayland specific
-    set -gx ELECTRON_OZONE_PLATFORM_HINT auto
-    set -gx GDK_BACKEND wayland
-    set -gx QT_QPA_PLATFORM wayland
+    #set -gx ELECTRON_OZONE_PLATFORM_HINT auto
+    #set -gx GDK_BACKEND wayland
+    #set -gx QT_QPA_PLATFORM wayland
     #set -gx SDL_VIDEODRIVER wayland,x11
 
     # Fuck you nvidia
