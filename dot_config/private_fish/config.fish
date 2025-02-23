@@ -2,6 +2,34 @@ function is_command_exists
     command -v $argv[1] >/dev/null 2>&1
 end
 
+# Wayland specific
+set -gx ELECTRON_OZONE_PLATFORM_HINT auto
+#set -gx GDK_BACKEND wayland
+#set -gx QT_QPA_PLATFORM wayland
+#set -gx SDL_VIDEODRIVER wayland,x11
+
+# Fuck you nvidia
+set -gx WEBKIT_DISABLE_COMPOSITING_MODE 1
+
+# XDG base dir
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx XDG_CACHE_HOME "$HOME/.cache"
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+
+# Uncluttering home dir
+set -gx LESSHISTFILE -
+set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
+set -gx DOTNET_CLI_HOME "$XDG_DATA_HOME/dotnet"
+set -gx CUDA_CACHE_PATH "$XDG_CACHE_HOME/nv"
+set -gx NPM_CONFIG_CACHE "$XDG_CACHE_HOME/npm"
+set -gx NPM_CONFIG_TMP "$XDG_RUNTIME_DIR/npm"
+set -gx ANDROID_USER_HOME "$XDG_DATA_HOME/android"
+set -gx GOPATH "$XDG_DATA_HOME/go"
+
+# PATH
+fish_add_path -pg "$HOME/.local/bin"
+fish_add_path -pg "$CARGO_HOME/bin"
+
 if status is-interactive
     function _fzf_setup
         set -f _fzf_common_flags \
@@ -25,33 +53,9 @@ if status is-interactive
     # disable greeting message
     set fish_greeting
 
-    # XDG base dir
-    set -gx XDG_CONFIG_HOME "$HOME/.config"
-    set -gx XDG_CACHE_HOME "$HOME/.cache"
-    set -gx XDG_DATA_HOME "$HOME/.local/share"
-
-    # Uncluttering home dir
-    set -gx LESSHISTFILE -
-    set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
-    set -gx DOTNET_CLI_HOME "$XDG_DATA_HOME/dotnet"
-    set -gx CUDA_CACHE_PATH "$XDG_CACHE_HOME/nv"
-    set -gx NPM_CONFIG_CACHE "$XDG_CACHE_HOME/npm"
-    set -gx NPM_CONFIG_TMP "$XDG_RUNTIME_DIR/npm"
-    set -gx ANDROID_USER_HOME "$XDG_DATA_HOME/android"
-    set -gx GOPATH "$XDG_DATA_HOME/go"
-
-    # PATH
-    fish_add_path -pg "$HOME/.local/bin"
-    fish_add_path -pg "$CARGO_HOME/bin"
-
-    # Wayland specific
-    #set -gx ELECTRON_OZONE_PLATFORM_HINT auto
-    #set -gx GDK_BACKEND wayland
-    #set -gx QT_QPA_PLATFORM wayland
-    #set -gx SDL_VIDEODRIVER wayland,x11
-
-    # Fuck you nvidia
-    set -gx WEBKIT_DISABLE_COMPOSITING_MODE 1
+    # vi keys
+    set -g fish_key_bindings fish_vi_key_bindings
+    bind -M insert \cf accept-autosuggestion
 
     if is_command_exists nvim
         set -gx EDITOR nvim
@@ -66,10 +70,6 @@ if status is-interactive
 
     # disable horizontal scroll
     set -gx SYSTEMD_LESS FRXMK
-end
-
-if status is-interactive
-    set -g fish_key_bindings fish_vi_key_bindings
 
     if is_command_exists atuin
         atuin init fish | source
