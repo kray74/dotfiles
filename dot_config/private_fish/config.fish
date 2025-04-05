@@ -109,3 +109,5 @@ if status is-interactive
     abbr -a --position command cm chezmoi
     abbr -a --position command fw sudo firewall-cmd
 end
+
+fish_add_path -pg "$HOME/.lmstudio/bin"
