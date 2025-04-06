@@ -15,7 +15,7 @@
 # sudo_command = "sudo"
 
 # Disable specific steps - same options as the command line flag
-disable = ["toolbx", "distrobox", "containers"]
+disable = ["toolbx", "distrobox", "containers", "cargo"]
 
 # Ignore failures for these steps
 ignore_failures = ["chezmoi", "git_repos"]
@@ -89,6 +89,7 @@ skip_notify = true
 # "Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 # "Custom command using interactive shell (unix)" = "-i vim_upgrade"
 "chezmoi upgrade" = "chezmoi upgrade"
+"cargo update" = "cargo install (cargo install --list | grep -E '^[a-z0-9_]+ v[0-9.]+:$' | cut -f1 -d' ')"
 
 
 [python]
