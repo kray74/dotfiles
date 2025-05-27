@@ -56,6 +56,7 @@ if status is-interactive
     # vi keys
     set -g fish_key_bindings fish_vi_key_bindings
     bind -M insert \cf accept-autosuggestion
+    bind -M insert delete delete-char
 
     if is_command_exists nvim
         set -gx EDITOR nvim
