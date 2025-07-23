@@ -4,6 +4,7 @@ palette = 'catppuccin-mocha'
 
 format = """
 [](fg:host-bg bg:hidden)$os$username$hostname\
+([](fg:prev_bg bg:container-bg)$container)\
 [](fg:prev_bg bg:path-bg)$directory\
 ([](fg:prev_bg bg:git-bg)$git_state$git_branch$git_commit)\
 [](fg:prev_bg bg:none)$git_status\
@@ -17,6 +18,11 @@ $fill\
 $character"""
 
 right_format = '$python( $shlvl)'
+
+[container]
+symbol = '󰆧 '
+format = '[ $symbol$name]($style)'
+style = 'fg:container-fg bg:container-bg'
 
 [os]
 disabled = false
@@ -194,6 +200,8 @@ format = '[$symbol$shlvl]($style)'
 style = 'fg:shlvl'
 
 [palettes.catppuccin-mocha]
+container-fg = 'black'
+container-bg = 'purple'
 host-fg = 'black'
 host-bg = 'white'
 root-fg = 'black'
