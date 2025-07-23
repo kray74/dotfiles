@@ -30,6 +30,12 @@ set -gx GOPATH "$XDG_DATA_HOME/go"
 fish_add_path -pg "$HOME/.local/bin"
 fish_add_path -pg "$CARGO_HOME/bin"
 
+# Toolbox specific
+if [ -e /run/.toolboxenv ]
+    set -gx CARGO_HOME /opt/cargo
+    set -gx RUSTUP_HOME /opt/rustup
+end
+
 if status is-interactive
     function _fzf_setup
         set -f _fzf_common_flags \
