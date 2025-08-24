@@ -67,6 +67,7 @@ if status is-interactive
 
     if is_command_exists fzf
         _fzf_setup
+        fzf --fish | source
     end
 
     # disable horizontal scroll
@@ -74,13 +75,9 @@ if status is-interactive
 
     if is_command_exists atuin
         atuin init fish | source
-    end
 
-    if is_command_exists fzf
-        fzf --fish | source
-
-        # Reset c-r to atuin
-        if is_command_exists atuin
+        if is_command_exists fzf
+            # Reset c-r back to atuin
             bind \cr _atuin_search
             bind -M insert \cr _atuin_search
         end
