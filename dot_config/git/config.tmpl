@@ -3,9 +3,11 @@
 	name = Vasiliy Biryukov
 [init]
 	defaultBranch = main
+{{ if eq .chezmoi.hostname "aorus" }}
 [diff]
 	tool = nvimdiff
 [difftool]
 	prompt = false
 [difftool "nvimdiff"]
 	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+{{ end }}
