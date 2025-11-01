@@ -3,8 +3,8 @@
 palette = 'catppuccin-mocha'
 
 format = """
-[](fg:host-bg bg:hidden)$os$username$hostname\
-([](fg:prev_bg bg:container-bg)$container)\
+$hostname$container\
+[](fg:user-bg bg:none)$os$username\
 [](fg:prev_bg bg:path-bg)$directory\
 ([](fg:prev_bg bg:git-bg)$git_state$git_branch$git_commit)\
 [](fg:prev_bg bg:none)$git_status\
@@ -20,71 +20,63 @@ $character"""
 right_format = '$python( $shlvl)'
 
 [container]
-symbol = '󰆧 '
-format = '[ $symbol$name]($style)'
+symbol = ' '
+format = '[](fg:container-bg bg:none)[$symbol$name]($style)[](fg:container-bg bg:none)'
 style = 'fg:container-fg bg:container-bg'
+
+[hostname]
+ssh_symbol = '󰢹 '
+trim_at = ''
+style = 'fg:host-fg bg:host-bg italic'
+format = '[](fg:host-bg bg:none)[$ssh_symbol$hostname]($style)[](fg:host-bg bg:none)'
 
 [os]
 disabled = false
-style = 'fg:host-fg bg:host-bg'
+style = 'fg:user-fg bg:user-bg'
 
 [os.symbols]
-Alpaquita = " "
 Alpine = " "
 AlmaLinux = " "
 Amazon = " "
 Android = " "
+#AOSC = " "
 Arch = " "
 Artix = " "
 CentOS = " "
 Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
+EndeavourOS = " "
 Fedora = " "
 FreeBSD = " "
-Garuda = "󰛓 "
+Garuda = " "
 Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
+Illumos = " "
 Kali = " "
 Linux = " "
-Mabox = " "
 Macos = " "
 Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
 Mint = " "
-NetBSD = " "
 NixOS = " "
-OpenBSD = "󰈺 "
+#Nobara = " "
+OpenBSD = " "
 openSUSE = " "
-OracleLinux = "󰌷 "
+OracleLinux = " "
 Pop = " "
 Raspbian = " "
 Redhat = " "
 RedHatEnterprise = " "
 RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
+Solus = " "
+SUSE = " "
 Ubuntu = " "
-Unknown = " "
+Unknown = " "
 Void = " "
-Windows = "󰍲 "
+Windows = " "
 
 [username]
 show_always = true
-style_user = 'fg:host-fg bg:host-bg italic'
+style_user = 'fg:user-fg bg:user-bg italic'
 style_root = 'fg:root-fg bg:root-bg bold'
 format = '[$user]($style)'
-
-[hostname]
-ssh_only = false
-ssh_symbol = '󰢹 '
-trim_at = ''
-style = 'fg:host-fg bg:host-bg italic'
-format = '[@$hostname$ssh_symbol]($style)'
 
 [directory]
 truncation_length = 5
@@ -200,10 +192,12 @@ format = '[$symbol$shlvl]($style)'
 style = 'fg:shlvl'
 
 [palettes.catppuccin-mocha]
-container-fg = 'black'
-container-bg = 'purple'
 host-fg = 'black'
-host-bg = 'white'
+host-bg = 'yellow'
+container-fg = 'black'
+container-bg = 'cyan'
+user-fg = 'black'
+user-bg = 'white'
 root-fg = 'black'
 root-bg = 'red'
 path-fg = 'black'
