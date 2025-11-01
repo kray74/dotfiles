@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.hostname "aorus" }}
+# nVidia issues
+set -gx WEBKIT_DISABLE_COMPOSITING_MODE 1
+
+# wayland
+set -gx ELECTRON_OZONE_PLATFORM_HINT auto
+#set -gx GDK_BACKEND wayland
+#set -gx QT_QPA_PLATFORM wayland
+#set -gx SDL_VIDEODRIVER wayland,x11
+
+fish_add_path -pg "$HOME/.local/bin"
+fish_add_path -pg "$CARGO_HOME/bin"
+fish_add_path -ag "$HOME/.lmstudio/bin"
+
+if status is-interactive
+    if [ $TERM = xterm-kitty ]
+        abbr -a --position command ssh kitten ssh
+    end
+
+    if command -v vivid >/dev/null 2>&1
+        set -gx LS_COLORS (vivid generate catppuccin-mocha)
+    end
+end
+{{ end }}
