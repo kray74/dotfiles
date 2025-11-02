@@ -18,7 +18,7 @@
 disable = ["toolbx", "distrobox", "containers", "cargo", "node"]
 
 # Ignore failures for these steps
-ignore_failures = ["chezmoi", "git_repos", "tldr"]
+ignore_failures = ["chezmoi", "git_repos"]
 
 # List of remote machines with Topgrade installed on them
 # remote_topgrades = ["toothless", "pi", "parnas"]
