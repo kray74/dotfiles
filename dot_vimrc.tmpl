@@ -1,0 +1,24 @@
+{{ if ne .chezmoi.hostname "aorus" }}
+set showmode
+
+set number
+set relativenumber
+
+set cursorline
+
+set tabstop=4
+set shiftwidth=0
+set softtabstop=-1
+set smartindent
+
+set scrolloff=5
+set sidescroll=2
+
+set smartcase
+
+set colorcolumn=81
+
+au BufRead,BufNewFile *.container set filetype=systemd
+au BufRead,BufNewFile *.volume set filetype=systemd
+au BufRead,BufNewFile *.network set filetype=systemd
+{{ end }}
