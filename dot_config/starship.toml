@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-palette = 'catppuccin-mocha'
+palette = 'classic'
 
 format = """
 $hostname$container\
@@ -190,7 +190,7 @@ symbol = ' '
 format = '[$symbol$shlvl]($style)'
 style = 'fg:shlvl'
 
-[palettes.catppuccin-mocha]
+[palettes.classic]
 host-fg = 'black'
 host-bg = 'yellow'
 container-fg = 'black'
