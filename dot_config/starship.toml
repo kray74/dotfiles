@@ -136,7 +136,7 @@ $modified$untracked$stashed\
 )"""
 
 [fill]
-symbol = ' ·'
+symbol = ' · '
 style = 'fg:fill dimmed'
 
 [cmd_duration]
