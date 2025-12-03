@@ -10,14 +10,13 @@ $hostname$container\
 [](fg:prev_bg bg:none)$git_status\
 $fill\
 (\
-([](fg:jobs-bg bg:prev_bg)$jobs)\
 ([](fg:duration-bg bg:prev_bg)$cmd_duration)\
 ([](fg:error-bg bg:prev_bg)$status)\
 [](fg:prev_bg bg:none)\
 )
 $character"""
 
-right_format = '$python( $shlvl)'
+right_format = '$python( $jobs)( $shlvl)'
 
 [container]
 symbol = ' '
@@ -140,11 +139,6 @@ $modified$untracked$stashed\
 symbol = ' ·'
 style = 'fg:fill dimmed'
 
-[jobs]
-symbol = '󱌣 '
-format = '[$symbol$number ]($style)'
-style = 'fg:jobs-fg bg:jobs-bg'
-
 [cmd_duration]
 min_time = 1_000                        # 1 sec
 format = '[ $duration ]($style)'
@@ -185,6 +179,11 @@ style = 'fg:python'
 detect_extensions = []
 detect_files = []
 
+[jobs]
+symbol = '󱌣 '
+format = '[$symbol$number]($style)'
+style = 'fg:jobs'
+
 [shlvl]
 disabled = false
 symbol = ' '
@@ -215,8 +214,7 @@ git-modified = 'yellow'
 git-untracked = 'blue'
 git-stashed = 'yellow'
 fill = 'white'
-jobs-fg = 'black'
-jobs-bg = 'cyan'
+jobs = 'cyan'
 duration-fg = 'black'
 duration-bg = 'yellow'
 error-fg = 'black'
