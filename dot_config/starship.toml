@@ -16,7 +16,7 @@ $fill\
 )
 $character"""
 
-right_format = '$python( $jobs)( $shlvl)'
+right_format = '($jobs)( $shlvl)'
 
 [container]
 symbol = ' '
@@ -140,7 +140,7 @@ symbol = ' · '
 style = 'fg:fill dimmed'
 
 [cmd_duration]
-min_time = 1_000                        # 1 sec
+min_time = 1_000  # 1 sec
 format = '[ $duration ]($style)'
 style = 'fg:duration-fg bg:duration-bg'
 
@@ -170,14 +170,6 @@ vimcmd_symbol = '[\[N\]](fg:vi-normal)[](fg:prompt)'
 vimcmd_replace_symbol = '[\[R\]](fg:vi-replace)[](fg:prompt)'
 vimcmd_replace_one_symbol = '[\[R\]](fg:vi-replace)[](fg:prompt)'
 vimcmd_visual_symbol = '[\[V\]](fg:vi-visual)[](fg:prompt)'
-
-[python]
-# only show virtualenv
-symbol = ' '
-format = '[$symbol$virtualenv]($style)'
-style = 'fg:python'
-detect_extensions = []
-detect_files = []
 
 [jobs]
 symbol = '󱌣 '
@@ -226,5 +218,4 @@ vi-normal = 'blue'
 vi-visual = 'cyan'
 vi-replace = 'yellow'
 prompt = 'white'
-python = 'yellow'
 shlvl = 'blue'
