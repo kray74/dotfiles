@@ -158,7 +158,7 @@ skip_notify = true
 # max_concurrency = 5
 
 # Additional git repositories to pull
-repos = ["~/projects/**"]
+repos = ["~/projects/**", "~/.config/containers/systemd/xray/assets"]
 
 # Don't pull the predefined git repos
 # pull_predefined = false
