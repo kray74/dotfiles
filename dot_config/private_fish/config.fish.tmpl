@@ -1,4 +1,8 @@
 {{ if eq .chezmoi.hostname "aorus" }}
+# DO NOT CHANGE THIS FILE MANUALLY!
+# Generated from chezmoi template
+# Use `chezmoi edit filename`
+
 # nVidia issues
 set -gx WEBKIT_DISABLE_COMPOSITING_MODE 1
 
@@ -22,4 +26,8 @@ if status is-interactive
         set -gx LS_COLORS (vivid generate catppuccin-mocha)
     end
 end
+
+# vpn
+set -gx http_proxy socks4://127.0.0.1:10080
+set -gx https_proxy socks4://127.0.0.1:10080
 {{ end }}
