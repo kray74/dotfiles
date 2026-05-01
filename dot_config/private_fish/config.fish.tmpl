@@ -13,6 +13,8 @@ fish_add_path -pg "$CARGO_HOME/bin"
 fish_add_path -ag "$HOME/.lmstudio/bin"
 
 if status is-interactive
+	fish_config theme choose new-catppuccin-mocha
+
     if [ $TERM = xterm-kitty ]
         abbr -a --position command ssh kitten ssh
     end
