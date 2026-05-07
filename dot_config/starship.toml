@@ -94,6 +94,9 @@ repo_root_format = """[ $before_root_path]($before_repo_root_style)\
 [$path]($style)\
 [$read_only]($read_only_style)"""
 
+[directory.substitutions]
+'.config' = ' '
+
 [git_state]
 rebase = ' '
 merge = ' '
