@@ -40,9 +40,9 @@ if status is-interactive
             "--color=selected-bg:#45475a"
 
         if command -v eza >/dev/null 2>&1
-            set -gx FZF_ALT_C_OPTS --preview \"eza -1aF --group-directories-first --color=always --icons=always {}\"
+            set -gx FZF_ALT_C_OPTS --preview \"eza -1aF --color=always --icons=always {}\"
         else
-            set -gx FZF_ALT_C_OPTS --preview \"ls -1AF --group-directories-first --color=always {}\"
+            set -gx FZF_ALT_C_OPTS --preview \"ls -1AF --color=always {}\"
         end
 
         fzf --fish | source
