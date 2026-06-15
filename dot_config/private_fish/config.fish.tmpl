@@ -13,8 +13,6 @@ set -gx ELECTRON_OZONE_PLATFORM_HINT auto
 #set -gx SDL_VIDEODRIVER wayland,x11
 
 fish_add_path -pg "$HOME/.local/bin"
-fish_add_path -pg "$CARGO_HOME/bin"
-fish_add_path -pg "$GOPATH/bin"
 
 if status is-interactive
 	fish_config theme choose new-catppuccin-mocha
