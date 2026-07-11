@@ -9,9 +9,12 @@
 	defaultBranch = main
 {{ if eq .chezmoi.hostname "aorus" }}
 [diff]
-	tool = nvimdiff
+	tool = kitty
 [difftool]
 	prompt = false
+	trustExitCode = true
 [difftool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+	cmd = nvim -d "$LOCAL" "$REMOTE"
+[difftool "kitty"]
+	cmd = kitten diff "$LOCAL" "$REMOTE"
 {{ end }}
