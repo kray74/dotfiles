@@ -128,7 +128,14 @@ change_obsidian_anuppuccin_theme() {
 	mv "${data}.new" "$data"
 }
 
+change_ppqt_adwaita_theme() {
+	styles="$XDG_DATA_HOME/PortProtonQt/themes/libadwaita/styles.py"
+	cp "$styles" "${styles}.bak"
+	sed -i "s/color_accent = .*/color_accent = \"#$color_hex\"/" "$styles"
+}
+
 choose_accent
 change_icon_theme
 change_vivaldi_theme_accent
 change_obsidian_anuppuccin_theme
+change_ppqt_adwaita_theme
