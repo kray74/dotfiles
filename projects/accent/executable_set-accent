@@ -53,6 +53,10 @@ choose_accent() {
 	done
 }
 
+change_gnome_accent() {
+	gsettings set org.gnome.desktop.interface accent-color $color_name
+}
+
 change_icon_theme() {
 	# symlinking isn't work properly for some reasons
 	rm -rf "$XDG_DATA_HOME/icons/Adwaita-colored"
@@ -135,6 +139,7 @@ change_ppqt_adwaita_theme() {
 }
 
 choose_accent
+change_gnome_accent
 change_icon_theme
 change_vivaldi_theme
 change_obsidian_anuppuccin_theme
