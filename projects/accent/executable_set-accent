@@ -60,7 +60,7 @@ change_icon_theme() {
 	gtk-update-icon-cache
 }
 
-change_vivaldi_theme_accent() {
+change_vivaldi_theme() {
 	local prefs="$HOME/.var/app/com.vivaldi.Vivaldi/config/vivaldi/Default/Preferences"
 	jq -c --arg color "#$color_hex" '
 		.vivaldi.themes.current as $current |
@@ -136,6 +136,6 @@ change_ppqt_adwaita_theme() {
 
 choose_accent
 change_icon_theme
-change_vivaldi_theme_accent
+change_vivaldi_theme
 change_obsidian_anuppuccin_theme
 change_ppqt_adwaita_theme
