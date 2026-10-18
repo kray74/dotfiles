@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+color_name=
+color_hex=
+
+choose_accent() {
+	local colors=(blue teal green yellow orange red pink purple slate)
+	echo "Choose accent color 1-${#colors[@]}:"
+	select color in "${colors[@]}"; do
+		color_name=$color
+		case $color in
+		blue)
+			color_hex="3584e3"
+			break
+			;;
+		teal)
+			color_hex="2190a4"
+			break
+			;;
+		green)
+			color_hex="3a944a"
+			break
+			;;
+		yellow)
+			color_hex="c88800"
+			break
+			;;
+		orange)
+			color_hex="ed5b00"
+			break
+			;;
+		red)
+			color_hex="e62d42"
+			break
+			;;
+		pink)
+			color_hex="d56199"
+			break
+			;;
+		purple)
+			color_hex="9141ac"
+			break
+			;;
+		slate)
+			color_hex="6f8396"
+			break
+			;;
+		*)
+			echo "Unknown option: $REPLY. Choose 1-${#colors[@]}":
+			;;
+		esac
+	done
+}
+
+change_icon_theme() {
+	# symlinking isn't work properly for some reasons
+	rm -rf "$XDG_DATA_HOME/icons/Adwaita-colored"
+	cp -a "$XDG_DATA_HOME/icons/Adwaita-$color_name" "$XDG_DATA_HOME/icons/Adwaita-colored"
+	gtk-update-icon-cache
+}
+
+change_vivaldi_theme_accent() {
+	local prefs="$HOME/.var/app/com.vivaldi.Vivaldi/config/vivaldi/Default/Preferences"
+	jq -c --arg color "#$color_hex" '
+		.vivaldi.themes.current as $current |
+		.vivaldi.themes.system |= map(
+			if .id == $current then
+				.colorHighlightBg = $color
+			else
+				.
+			end
+		)
+	' "$prefs" >"${prefs}.new"
+	cp "$prefs" "${prefs}.old"
+	mv "${prefs}.new" "$prefs"
+}
+
+change_obsidian_anuppuccin_theme() {
+	# AnuPpuccin theme doesn't have some colors, change them to the closest analogue
+	local color=$color_name
+	case $color in
+	orange)
+		color=peach
+		;;
+	purple)
+		color=mauve
+		;;
+	slate)
+		color=sapphire
+		;;
+	esac
+
+	# Change text decoration colors to not conflict with accent
+	local italic=
+	case $color in
+	teal | green)
+		italic=peach
+		;;
+	yellow)
+		italic=sapphire
+		;;
+	esac
+
+	local bold=
+	case $color in
+	red | pink)
+		bold=peach
+		;;
+	esac
+
+	local data="$HOME/documents/sync/obsidian/.obsidian/plugins/obsidian-style-settings/data.json"
+	jq --arg color "$color" --arg italic "$italic" --arg bold "$bold" '
+		."anuppuccin-theme-settings@@anuppuccin-theme-accents" = "ctp-accent-" + $color |
+		."anuppuccin-theme-settings@@anuppuccin-light-theme-accents" = "ctp-accent-light-" + $color |
+		if ($italic == "") then
+			del(."anuppuccin-theme-settings@@anp-italic-custom")
+		else
+			."anuppuccin-theme-settings@@anp-italic-custom" = "anp-italic-" + $italic
+		end |
+		if ($bold == "") then
+			del(."anuppuccin-theme-settings@@anp-bold-custom")
+		else
+			."anuppuccin-theme-settings@@anp-bold-custom" = "anp-bold-" + $bold
+		end
+	' "$data" >"${data}.new"
+	cp "$data" "${data}.old"
+	mv "${data}.new" "$data"
+}
+
+choose_accent
+change_icon_theme
+change_vivaldi_theme_accent
+change_obsidian_anuppuccin_theme
