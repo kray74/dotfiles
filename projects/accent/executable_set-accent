@@ -72,7 +72,7 @@ change_vivaldi_theme_accent() {
 			end
 		)
 	' "$prefs" >"${prefs}.new"
-	cp "$prefs" "${prefs}.old"
+	cp "$prefs" "${prefs}.bak"
 	mv "${prefs}.new" "$prefs"
 }
 
@@ -124,7 +124,7 @@ change_obsidian_anuppuccin_theme() {
 			."anuppuccin-theme-settings@@anp-bold-custom" = "anp-bold-" + $bold
 		end
 	' "$data" >"${data}.new"
-	cp "$data" "${data}.old"
+	cp "$data" "${data}.bak"
 	mv "${data}.new" "$data"
 }
 
