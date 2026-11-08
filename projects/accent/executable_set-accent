@@ -68,7 +68,7 @@ change_vivaldi_theme() {
 	local prefs="$HOME/.var/app/com.vivaldi.Vivaldi/config/vivaldi/Default/Preferences"
 	jq -c --arg color "#$color_hex" '
 		.vivaldi.themes.current as $current |
-		.vivaldi.themes.system |= map(
+		.vivaldi.themes.user |= map(
 			if .id == $current then
 				.colorHighlightBg = $color
 			else
