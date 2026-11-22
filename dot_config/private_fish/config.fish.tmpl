@@ -15,7 +15,7 @@ set -gx ELECTRON_OZONE_PLATFORM_HINT auto
 fish_add_path -pg "$HOME/.local/bin"
 
 if status is-interactive
-	fish_config theme choose new-catppuccin-mocha
+	fish_config theme choose default
 
     if [ $TERM = xterm-kitty ]
         abbr -a --position command ssh kitten ssh
